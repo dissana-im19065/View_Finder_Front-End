@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors, file_names, unnecessary_import
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

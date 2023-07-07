@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:login/News_feed/login_screen.dart';
 import 'package:login/widgets/circle_story.dart';
-import 'package:login/widgets/story_widget.dart';
+
 
 class ProfileScreen extends StatelessWidget {
   // final List _stories = ['story 1', 'story 2', 'story 3', 'story 4', 'story 5'];
