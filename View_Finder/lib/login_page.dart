@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login/screens/main_screen.dart';
 import 'register_page.dart';
-import 'package:login/api/api_login.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -21,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   Future<void> loginUser() async {
-    final url = 'http://127.0.0.1:3000/api/users/login';
+    final url = 'http://192.168.1.20:3000/api/users/login';
     final headers = {'Content-Type': 'application/json'};
     final loginData = {
       'email': usernameController.text,

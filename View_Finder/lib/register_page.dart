@@ -22,7 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController();
 
   Future<void> registerUser() async {
-    final url = 'http://localhost:3000/api/users/';
+    final url = 'http://192.168.1.20:3000/api/users/';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {
@@ -41,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       if (response.statusCode == 200) {
         // User registered successfully
-        final token = json.decode(response.body)['token'];
+        // final token = json.decode(response.body)['token'];
         // Store the token securely (e.g., shared preferences or secure storage)
 
         // Navigate to the login page
