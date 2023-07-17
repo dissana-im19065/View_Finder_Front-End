@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "237580367204",
+    "project_id": "viewfinder-f720f",
+    "storage_bucket": "viewfinder-f720f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237580367204:android:0682cbae18a3492886b671",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237580367204-i2fde0vdjuqdj6vl8kgn6cij7hvtdmjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJGupug4Gt3UgqGYtAQPPOBdBTaQXD_gE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237580367204-i2fde0vdjuqdj6vl8kgn6cij7hvtdmjb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

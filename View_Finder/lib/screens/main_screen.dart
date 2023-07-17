@@ -43,21 +43,32 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.home), label: '', backgroundColor: Colors.black),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search_outlined),
+              icon: Icon(
+                Icons.home,
+                size: 35,
+              ),
               label: '',
               backgroundColor: Colors.black),
           BottomNavigationBarItem(
-              icon: Icon(Icons.smart_display_outlined),
+              icon: Icon(Icons.search_rounded, size: 35),
               label: '',
               backgroundColor: Colors.black),
           BottomNavigationBarItem(
-              icon: Icon(Icons.card_giftcard_outlined),
+              icon: Icon(
+                Icons.add_to_photos_sharp,
+                size: 35,
+              ),
               label: '',
               backgroundColor: Colors.black),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.chat_rounded, size: 35),
+              label: '',
+              backgroundColor: Colors.black),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.account_circle_rounded,
+                size: 35,
+              ),
               label: '',
               backgroundColor: Colors.black),
         ],

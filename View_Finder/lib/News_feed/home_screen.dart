@@ -6,7 +6,18 @@ import 'package:login/widgets/post_cart.dart';
 
 class HomeScreen extends StatelessWidget {
   // final List _stories = ['story 1', 'story 2', 'story 3', 'story 4', 'story 5', 'story 6', 'story 7', 'story 8', 'story 9', 'story 10'];
-  final List _posts = ['post 1', 'post 2', 'post 3', 'post 4', 'post 5', 'post 6', 'post 7', 'post 8', 'post 9', 'post 10'];
+  final List _posts = [
+    'post 1',
+    'post 2',
+    'post 3',
+    'post 4',
+    'post 5',
+    'post 6',
+    'post 7',
+    'post 8',
+    'post 9',
+    'post 10'
+  ];
 
   HomeScreen({Key? key}) : super(key: key);
 
@@ -27,13 +38,13 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Row(
             children: const [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.add_box_outlined,
-                  size: 30,
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: Icon(
+              //     Icons.add_box_outlined,
+              //     size: 30,
+              //   ),
+              // ),
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(
@@ -55,7 +66,7 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            color: Colors.grey.shade700,
+            color: Color.fromARGB(255, 0, 0, 0),
             height: 1,
             width: MediaQuery.of(context).size.width,
           ),
@@ -71,7 +82,7 @@ class HomeScreen extends StatelessWidget {
           //       }),
           // ),
           Container(
-            color: Colors.grey.shade700,
+            color: const Color.fromARGB(255, 0, 0, 0),
             height: 1,
             width: MediaQuery.of(context).size.width,
           ),

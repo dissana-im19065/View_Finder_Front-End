@@ -15,12 +15,19 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
+int userId = 0;
+String firstName = '';
+String lastName = '';
+
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  final Future<SharedPreferences> sharedPreferences =
+      SharedPreferences.getInstance();
+
   Future<void> loginUser() async {
-    final url = 'http://192.168.1.20:3000/api/users/login';
+    final url = 'http://192.168.189.206:3000/api/users/login';
     final headers = {'Content-Type': 'application/json'};
     final loginData = {
       'email': usernameController.text,
@@ -37,6 +44,11 @@ class _LoginPageState extends State<LoginPage> {
         // Login successful
         final responseData = json.decode(response.body);
         final token = responseData['token'];
+        userId = responseData['result']['user_id'];
+        firstName = responseData['result']['first_name'];
+        lastName = responseData['result']['last_name'];
+
+        print('userid' + userId.toString());
 
         // Store the token securely using shared preferences
         final prefs = await SharedPreferences.getInstance();
