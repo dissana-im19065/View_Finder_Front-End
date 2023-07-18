@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:login/News_feed/home_screen.dart';
 import 'package:login/News_feed/login_screen.dart';
 import 'package:login/login_page.dart';
 import 'package:login/screens/main_screen.dart';
@@ -60,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         print('User registration failed. Status code: ${response.statusCode}');
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProfileScreen()),
+          MaterialPageRoute(builder: (context) => HomeScreen()),
         );
       }
     } catch (error) {
