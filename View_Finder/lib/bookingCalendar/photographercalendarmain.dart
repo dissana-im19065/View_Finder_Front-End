@@ -1,16 +1,11 @@
-// ignore_for_file: prefer_final_fields, prefer_const_constructors, use_build_context_synchronously, avoid_print, use_key_in_widget_constructors, library_private_types_in_public_api
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously, unused_local_variable
 
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class Calendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,25 +31,24 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
   String _bookNote = '';
 
   Future<void> _bookDate(DateTime date, String note) async {
+    print(date);
     print(note);
     final url = Uri.parse('http://192.168.142.206:3000/api/users/event');
-
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
-
-    // Define the request body as a JSON-encoded string
     final body = {
+      'user_id': '33',
       'date': date.toString(),
       'notice': note,
     };
     final jsonBody = json.encode(body);
-
-    // Send the POST request to the API endpoint
     final response = await http.post(url, headers: headers, body: jsonBody);
     if (response.statusCode == 200) {
       print('event added successfully');
+
+      final responseData = json.decode(response.body);
       setState(() {
         _bookedDates[date] = note;
       });
@@ -65,63 +59,88 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: TableCalendar(
-        firstDay: DateTime(1999),
-        lastDay: DateTime(2050),
-        focusedDay: _focusedDay,
-        calendarFormat: _calendarFormat,
-        selectedDayPredicate: (day) => _bookedDates.containsKey(day),
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: TableCalendar(
+              firstDay: DateTime(1999),
+              lastDay: DateTime(2050),
+              focusedDay: _focusedDay,
+              calendarFormat: _calendarFormat,
+              selectedDayPredicate: (day) => _bookedDates.containsKey(day),
+              onDaySelected: (selectedDay, focusedDay) {
+                if (!_bookedDates.containsKey(selectedDay)) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Book this date?'),
+                      content: TextField(
+                        decoration: InputDecoration(hintText: 'Add a note'),
+                        onChanged: (value) {
+                          setState(() {
+                            _bookNote = value;
+                          });
+                        },
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await _bookDate(selectedDay, _bookNote);
+                            Navigator.pop(context);
+                          },
+                          child: Text('Book'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
 
-        onDaySelected: (selectedDay, focusedDay) {
-          if (!_bookedDates.containsKey(selectedDay)) {
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text('Book this date?'),
-                content: TextField(
-                  decoration: InputDecoration(hintText: 'Add a note'),
-                  onChanged: (value) {
-                    setState(() {
-                      _bookNote = value;
-                    });
-                  },
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text('Cancel'),
-                  ),
-                  TextButton(
-                    onPressed: () async {
-                      await _bookDate(selectedDay, _bookNote);
-                      Navigator.pop(context);
-                    },
-                    child: Text('Book'),
-                  ),
-                ],
-              ),
-            );
-          }
-          if (_bookedDates.containsKey(selectedDay)) {
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text('Day Already Booked'),
-                content: Text("heeeeeeeeee"),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text('OK'),
-                  ),
-                ],
-              ),
-            );
-          }
-        },
-        ///////////////////////////////////////////////
-
-        // add other properties as needed
+                if (_bookedDates.containsKey(selectedDay)) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Date already booked'),
+                      content: Text('PASS HERE NOTE '),
+                      actions: [
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
+          SizedBox(height: 16),
+          Text(
+            'Your Have Upcomming Booking',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 8),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _bookedDates.length,
+              itemBuilder: (context, index) {
+                // setState(() {});
+                String date = 'oooo';
+                String note = 'broooo';
+                return ListTile(
+                  title: Text(date.toString()),
+                  subtitle: Text(note),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -61,15 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // Navigate to the home page
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-              builder: (context) => MyTableCalendar()), //LoginPage
+          MaterialPageRoute(builder: (context) => Calendar()), //LoginPage
         );
       } else {
         // Display the login page
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-              builder: (context) => MyTableCalendar()), //LoginPage
+          MaterialPageRoute(builder: (context) => Calendar()), //LoginPage
         );
       }
     });
