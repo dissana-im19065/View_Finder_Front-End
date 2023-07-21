@@ -1,9 +1,13 @@
-// ignore_for_file: unused_import, prefer_const_constructors, unnecessary_import, unnecessary_new, prefer_const_literals_to_create_immutables
+// ignore_for_file: unused_import, prefer_const_constructors, unnecessary_import, unnecessary_new, prefer_const_literals_to_create_immutables, unused_local_variable
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:login/bookingCalendar/photographercalendarmain.dart';
+import 'News_feed/user_type.dart';
+import 'customer/customer_profile.dart';
 import 'login_page.dart';
 import 'package:login/screens/main_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,8 +45,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late SharedPreferences _sharedPreferences;
-
   @override
   void initState() {
     super.initState();
@@ -51,15 +53,24 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void isLogin() async {
-    _sharedPreferences = await SharedPreferences.getInstance();
-    Timer(Duration(seconds: 10), () {
-      if (_sharedPreferences.getInt('userid') == null &&
-          _sharedPreferences.getString('useremail') == null) {
-        Route route = MaterialPageRoute(builder: (_) => LoginPage());
-        Navigator.pushReplacement(context, route);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? jwtToken = prefs.getString('jwtToken');
+
+    Timer(Duration(seconds: 5), () {
+      if (jwtToken != null && !JwtDecoder.isExpired(jwtToken)) {
+        // Navigate to the home page
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MyTableCalendar()), //LoginPage
+        );
       } else {
-        Route route = MaterialPageRoute(builder: (_) => MainScreen());
-        Navigator.pushReplacement(context, route);
+        // Display the login page
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MyTableCalendar()), //LoginPage
+        );
       }
     });
   }
@@ -70,7 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Container(
       decoration: BoxDecoration(
           gradient: new LinearGradient(
-              colors: [Color.fromARGB(255, 0, 0, 0), Colors.black87],
+              colors: [
+                Color.fromARGB(255, 0, 0, 0),
+                Color.fromARGB(255, 0, 0, 0)
+              ],
               begin: const FractionalOffset(0.0, 1.0),
               end: const FractionalOffset(0.0, 1.0),
               stops: [0.0, 1.0],

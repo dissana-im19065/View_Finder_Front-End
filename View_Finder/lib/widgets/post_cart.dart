@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, unused_local_variable, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, unused_local_variable, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_interpolation_to_compose_strings, prefer_final_fields, unused_field, must_be_immutable, avoid_print, non_constant_identifier_names
 
 import 'dart:convert';
 
@@ -15,15 +15,16 @@ class Post {
   final int postId;
   final String imageUrl;
   final String description;
+  final int likecount;
 
-  Post({
-    required this.userId,
-    required this.firstName,
-    required this.lastName,
-    required this.postId,
-    required this.imageUrl,
-    required this.description,
-  });
+  Post(
+      {required this.userId,
+      required this.firstName,
+      required this.lastName,
+      required this.postId,
+      required this.imageUrl,
+      required this.description,
+      required this.likecount});
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
@@ -33,15 +34,21 @@ class Post {
       postId: json['post_id'],
       imageUrl: json['image_url'],
       description: json['description'],
+      likecount: json['like_count'],
     );
   }
 }
 
+//int user_Id = 0;
+
 Future<List<Post>> fetchPosts() async {
   final response =
-      await http.get(Uri.parse('http://192.168.189.206:3000/api/users/post'));
+      await http.get(Uri.parse('http://192.168.85.206:3000/api/users/post'));
 
   if (response.statusCode == 200) {
+    final responseData = json.decode(response.body);
+    print(responseData);
+
     final parsed =
         jsonDecode(response.body)['data'].cast<Map<String, dynamic>>();
     return parsed.map<Post>((json) => Post.fromJson(json)).toList();
@@ -49,8 +56,6 @@ Future<List<Post>> fetchPosts() async {
     throw Exception('Failed to fetch posts');
   }
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
 
 class PostListWidget extends StatelessWidget {
   @override
@@ -73,13 +78,85 @@ class PostListWidget extends StatelessWidget {
     );
   }
 }
+////////////////////////////////////////////////////////////////////////////// like
+
+void like(int postId) async {
+  // Define the API endpoint URL
+  final url = Uri.parse('http://192.168.85.206:3000/api/users/like');
+
+  // Define the request headers (if any)
+  final headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  // Define the request body as a JSON-encoded string
+  final body = {
+    'user_id': userId,
+    'post_id': postId,
+  };
+  final jsonBody = json.encode(body);
+
+  // Send the POST request to the API endpoint
+  final response = await http.post(url, headers: headers, body: jsonBody);
+
+  // Handle the response
+  if (response.statusCode == 200) {
+    final responseData = json.decode(response.body);
+    // likeCount = responseData['data']['like_count'];
+    print('like added successfully!');
+  } else {
+    print('Failed to like post: ${response.body}');
+  }
+}
+///////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////// unlike
+
+void unlike(int postId) async {
+  // Define the API endpoint URL
+  final url = Uri.parse('http://192.168.85.206:3000/api/users/unlike');
+
+  // Define the request headers (if any)
+  final headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  // Define the request body as a JSON-encoded string
+  final body = {
+    'post_id': postId,
+  };
+  final jsonBody = json.encode(body);
+
+  // Send the POST request to the API endpoint
+  final response = await http.post(url, headers: headers, body: jsonBody);
+
+  // Handle the response
+  if (response.statusCode == 200) {
+    final responseData = json.decode(response.body);
+    // likeCount = responseData['data']['like_count'];
+    print('like removed successfully!');
+  } else {
+    print('Failed to remove like : ${response.body}');
+  }
+}
 
 //////////////////////////////////////////////////////////////////////////////
 
-class PostWidget extends StatelessWidget {
+class PostWidget extends StatefulWidget {
   final Post post;
 
   PostWidget({required this.post});
+
+  @override
+  State<PostWidget> createState() => _PostWidgetState();
+}
+
+class _PostWidgetState extends State<PostWidget> {
+  bool _isLiked = false;
+
+  int _likeCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +209,7 @@ class PostWidget extends StatelessWidget {
                   //   width: 3,
                   // ),
                   Text(
-                    post.firstName + '  ' + post.lastName,
+                    widget.post.firstName + '  ' + widget.post.lastName,
                     style: GoogleFonts.alegreyaSans(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
@@ -145,7 +222,7 @@ class PostWidget extends StatelessWidget {
 
           ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-          Image.network(post.imageUrl),
+          Image.network(widget.post.imageUrl),
           // Text(
           //   post.description,
           //   style: GoogleFonts.russoOne(
@@ -161,20 +238,36 @@ class PostWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  children: const [
+                  children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 182.0, top: 4),
-                      child: Icon(
-                        Icons.favorite_outline_rounded,
-                        color: Colors.white,
-                        size: 30,
+                      padding: EdgeInsets.only(left: 172.0, top: 4),
+                      child: IconButton(
+                        icon: Icon(
+                          _isLiked ? Icons.favorite : Icons.favorite_border,
+                          color: _isLiked ? Colors.red : Colors.white,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          if (!_isLiked) {
+                            like(widget.post.postId);
+                          } else {
+                            unlike(widget.post.postId);
+                          }
+
+                          setState(() {
+                            // toggle the like status
+                            _isLiked = !_isLiked;
+                            // update the like count
+                            _likeCount += _isLiked ? 1 : -1;
+                          });
+                        },
                       ),
                     ),
                     SizedBox(
                       width: 3,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 150.0, top: 4),
+                      padding: EdgeInsets.only(left: 140.0, top: 4),
                       child: Icon(
                         Icons.chat_bubble_outline_rounded,
                         color: Colors.white,
@@ -208,7 +301,7 @@ class PostWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '133 likes',
+                  "123 likes",
                   style: GoogleFonts.alegreyaSans(
                       fontWeight: FontWeight.bold,
                       color: const Color.fromARGB(255, 255, 255, 255)),
@@ -219,7 +312,7 @@ class PostWidget extends StatelessWidget {
           Column(
             children: [
               Text(
-                post.description,
+                widget.post.description,
                 overflow: TextOverflow.clip,
                 style: TextStyle(
                   color: Color.fromARGB(255, 255, 255, 255),

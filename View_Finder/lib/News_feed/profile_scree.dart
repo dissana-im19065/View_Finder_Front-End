@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:login/News_feed/home_screen.dart';
 import 'package:login/News_feed/login_screen.dart';
 import 'package:login/login_page.dart';
 import 'package:login/screens/main_screen.dart';
@@ -31,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   UploadTask? uploadTask;
 
   Future<void> createPost(imageurl) async {
-    final url = 'http://192.168.189.206:3000/api/users/post';
+    final url = 'http://192.168.85.206:3000/api/users/post';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {
@@ -58,15 +57,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         );
       } else {
         // Error registering user
-        print('User registration failed. Status code: ${response.statusCode}');
+        print('post publish failed. Status code: ${response.statusCode}');
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => ProfileScreen()),
         );
       }
     } catch (error) {
       // Handle the error
-      print('Error registering user: $error');
+      print('Error posting post: $error');
     }
   }
 
@@ -83,15 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     String urlDownload = await snapshot.ref.getDownloadURL();
     createPost(urlDownload);
-    // setState(() {
-    //   isUploading = false;
-    // });
-    // StoreSalonType(
-    //   salon_id,
-    //   selectedOptions,
-    //   urlDownload,
-    // );
-    // final shortedUrl = shortenUrl(urlDownload);
+
     print('Download-Link: $urlDownload');
   }
 

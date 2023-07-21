@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login/screens/main_screen.dart';
+import 'News_feed/user_type.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
       SharedPreferences.getInstance();
 
   Future<void> loginUser() async {
-    final url = 'http://192.168.189.206:3000/api/users/login';
+    final url = 'http://192.168.85.206:3000/api/users/login';
     final headers = {'Content-Type': 'application/json'};
     final loginData = {
       'email': usernameController.text,
@@ -248,7 +249,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage()),
+                              builder: (context) => UserTypeScreen()),
                         );
                       },
                       child: Text(

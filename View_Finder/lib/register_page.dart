@@ -27,8 +27,10 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
-  final Future<SharedPreferences> sharedPreferences =
-      SharedPreferences.getInstance();
+  void saveTokenToSharedPreferences(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('jwt_token', token);
+  }
 
   String phoneNumber = '';
   bool isPhoneNumberValid = false;
@@ -41,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool isRePasswordValid = false;
 
   Future<void> registerUser() async {
-    final url = 'http://192.168.189.206:3000/api/users/';
+    final url = 'http://192.168.85.206:3000/api/users/';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {

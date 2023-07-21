@@ -6,13 +6,13 @@ class CircleStory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.all(6.0),
+      padding: EdgeInsets.only(left: 0),
       child: ClipOval(
         child: Image(
-          height: 68,
-          width: 68,
+          height: 88,
+          width: 88,
           image: NetworkImage(
-              'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800'),
+              'https://www.islandcricket.lk/wp-content/uploads/2020/02/mendis_fernado_srilanka1-min.jpg'),
           fit: BoxFit.cover,
         ),
       ),
