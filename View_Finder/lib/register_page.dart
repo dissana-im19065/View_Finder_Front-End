@@ -43,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool isRePasswordValid = false;
 
   Future<void> registerUser() async {
-    final url = 'http://192.168.85.206:3000/api/users/';
+    final url = 'http://192.168.124.206:3000/api/users/';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {

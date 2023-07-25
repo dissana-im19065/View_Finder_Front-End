@@ -5,7 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:login/bookingCalendar/photographercalendarmain.dart';
 import 'News_feed/user_type.dart';
 import 'customer/customer_profile.dart';
 import 'login_page.dart';
@@ -61,13 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // Navigate to the home page
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Calendar()), //LoginPage
+          MaterialPageRoute(builder: (context) => LoginPage()), //LoginPage
         );
       } else {
         // Display the login page
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Calendar()), //LoginPage
+          MaterialPageRoute(builder: (context) => LoginPage()), //LoginPage
         );
       }
     });

@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 // import 'package:practice_widgets/instagram/home_screen.dart';
-import 'package:login/News_feed/main_screen.dart';
+
 import 'package:login/News_feed/register_screen.dart';
+
+import '../screens/main_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);

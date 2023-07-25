@@ -43,7 +43,7 @@ class Post {
 
 Future<List<Post>> fetchPosts() async {
   final response =
-      await http.get(Uri.parse('http://192.168.85.206:3000/api/users/post'));
+      await http.get(Uri.parse('http://192.168.124.206:3000/api/users/post'));
 
   if (response.statusCode == 200) {
     final responseData = json.decode(response.body);
@@ -64,6 +64,7 @@ class PostListWidget extends StatelessWidget {
       future: fetchPosts(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          print("sss" + snapshot.data!.toString());
           final posts = snapshot.data!;
           posts.shuffle(); // Shuffle the list of posts randomly
           return Column(
@@ -82,7 +83,7 @@ class PostListWidget extends StatelessWidget {
 
 void like(int postId) async {
   // Define the API endpoint URL
-  final url = Uri.parse('http://192.168.85.206:3000/api/users/like');
+  final url = Uri.parse('http://192.168.124.206:3000/api/users/like');
 
   // Define the request headers (if any)
   final headers = {
@@ -115,7 +116,7 @@ void like(int postId) async {
 
 void unlike(int postId) async {
   // Define the API endpoint URL
-  final url = Uri.parse('http://192.168.85.206:3000/api/users/unlike');
+  final url = Uri.parse('http://192.168.124.206:3000/api/users/unlike');
 
   // Define the request headers (if any)
   final headers = {
@@ -161,23 +162,19 @@ class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
+      color: Color.fromARGB(255, 0, 0, 0),
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: const [
                   Padding(
-                    padding: EdgeInsets.only(left: 165.0, top: 0),
+                    padding: EdgeInsets.only(left: 20.0, top: 5),
                     child:
-                        SizedBox(height: 75, width: 75, child: CircleStory()),
+                        SizedBox(height: 55, width: 55, child: CircleStory()),
                   ),
-                  SizedBox(
-                    width: 3,
-                  ),
+
                   // Text(
                   //   'Rusiru Dissanayake',
                   //   style: TextStyle(color: Colors.white, fontSize: 15),
@@ -185,15 +182,20 @@ class _PostWidgetState extends State<PostWidget> {
                 ],
               ),
               Center(
-                child: const Padding(
-                  padding:
-                      EdgeInsets.only(right: 10.0, top: 20.0, bottom: 20.0),
-                  child: Icon(
-                    Icons.more_vert,
-                    color: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 12.0,
+                    top: 10,
+                  ),
+                  child: Text(
+                    widget.post.firstName + '  ' + widget.post.lastName,
+                    style: GoogleFonts.alegreyaSans(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 255, 255, 255)),
                   ),
                 ),
-              )
+              ),
             ],
           ),
           Row(
@@ -202,19 +204,12 @@ class _PostWidgetState extends State<PostWidget> {
               Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 40, bottom: 10),
+                    padding: EdgeInsets.only(top: 10, bottom: 10),
                     // child: SizedBox(height: 55, width: 55, child: CircleStory()),
                   ),
                   // SizedBox(
                   //   width: 3,
                   // ),
-                  Text(
-                    widget.post.firstName + '  ' + widget.post.lastName,
-                    style: GoogleFonts.alegreyaSans(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 255, 255, 255)),
-                  ),
                 ],
               ),
             ],
@@ -240,7 +235,7 @@ class _PostWidgetState extends State<PostWidget> {
                 Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 172.0, top: 4),
+                      padding: EdgeInsets.only(left: 171.0, top: 4),
                       child: IconButton(
                         icon: Icon(
                           _isLiked ? Icons.favorite : Icons.favorite_border,
@@ -296,7 +291,7 @@ class _PostWidgetState extends State<PostWidget> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 0.0, bottom: 10),
+            padding: const EdgeInsets.only(bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -320,27 +315,26 @@ class _PostWidgetState extends State<PostWidget> {
               ),
             ],
           ),
+
           Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(left: 10, top: 20),
             child: Row(
               children: [
                 Text(
-                  'view 54 comments',
-                  style: TextStyle(color: Colors.grey.shade500),
+                  '54 comments',
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 232, 232, 232)),
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 2),
-            child: Row(
-              children: [
-                Text(
-                  '2 days ago',
-                  style: TextStyle(color: Colors.grey.shade500),
-                ),
-              ],
-            ),
+
+          SizedBox(
+            height: 20,
+          ),
+          Divider(
+            color: Colors.grey,
+            thickness: 0.15,
           ),
         ],
       ),

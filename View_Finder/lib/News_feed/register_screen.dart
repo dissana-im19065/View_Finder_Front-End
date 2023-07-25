@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:login/News_feed/login_screen.dart';
-import 'package:login/News_feed/main_screen.dart';
+import 'package:login/screens/main_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);

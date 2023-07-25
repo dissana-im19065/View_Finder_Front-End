@@ -2,12 +2,14 @@
 
 // ignore_for_file: prefer_final_fields, prefer_const_constructors
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:login/News_feed/home_screen.dart';
 import 'package:login/News_feed/profile_scree.dart';
 import 'package:login/News_feed/reels_screen.dart';
 import 'package:login/News_feed/search_screen.dart';
 import 'package:login/News_feed/shop_screen.dart';
+import 'package:login/market/marketMain.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -23,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeScreen(),
     SearchScreen(),
     ReelsScreen(),
-    ShopScreen(),
+    Market(),
     ProfileScreen()
   ];
 
@@ -36,48 +38,23 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      extendBody: true,
+      backgroundColor: Colors.transparent,
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                size: 35,
-              ),
-              label: '',
-              backgroundColor: Colors.black),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search_rounded, size: 35),
-              label: '',
-              backgroundColor: Colors.black),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add_to_photos_sharp,
-                size: 35,
-              ),
-              label: '',
-              backgroundColor: Colors.black),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.chat_rounded, size: 35),
-              label: '',
-              backgroundColor: Colors.black),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_circle_rounded,
-                size: 35,
-              ),
-              label: '',
-              backgroundColor: Colors.black),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+        color: Color.fromARGB(255, 255, 255, 255),
+        buttonBackgroundColor: Colors.white,
+        height: 50,
+        items: const <Widget>[
+          Icon(Icons.home, size: 30, color: Color.fromARGB(255, 0, 0, 0)),
+          Icon(Icons.search, size: 30, color: Colors.black),
+          Icon(Icons.video_collection, size: 30, color: Colors.black),
+          Icon(Icons.shopping_bag, size: 30, color: Colors.black),
+          Icon(Icons.person, size: 30, color: Colors.black),
         ],
-        backgroundColor: Colors.black,
-        unselectedItemColor: Colors.white,
-        showUnselectedLabels: true,
-        iconSize: 30,
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );
