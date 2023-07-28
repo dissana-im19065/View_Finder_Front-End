@@ -14,7 +14,9 @@ import 'package:login/widgets/circle_story.dart';
 import 'package:mime/mime.dart';
 import 'package:http/http.dart' as http;
 
+import '../CameraRenting/RentingSer_FormReg.dart';
 import '../calendar.dart';
+import '../market/add_item.dart';
 
 class ProfileScreen extends StatefulWidget {
   // final List _stories = ['story 1', 'story 2', 'story 3', 'story 4', 'story 5'];
@@ -33,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   UploadTask? uploadTask;
 
   Future<void> createPost(imageurl) async {
-    final url = 'http://192.168.124.206:3000/api/users/post';
+    final url = 'http://192.168.140.206:3000/api/users/post';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {
@@ -391,26 +393,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               SizedBox(height: 120),
                               Container(
                                 margin: EdgeInsets.only(top: 20),
-                                child: Center(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                MyTableCalendar()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'GO TO CALENDAR',
-                                      style: TextStyle(
-                                        fontSize: 25,
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                      ),
-                                    ),
-                                  ),
-                                ),
                               ),
                               SizedBox(height: 60),
                               Container(
@@ -421,11 +403,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Market()),
+                                            builder: (context) => addItem()),
                                       );
                                     },
                                     child: Text(
-                                      'GO TO MARKETPLACE',
+                                      'PUBLISH ADD',
+                                      style: TextStyle(
+                                        fontSize: 25,
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 20),
+                                child: Center(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Rent()),
+                                      );
+                                    },
+                                    child: Text(
+                                      'Rent Register Form',
                                       style: TextStyle(
                                         fontSize: 25,
                                         color:

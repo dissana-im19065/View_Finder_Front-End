@@ -43,7 +43,7 @@ class Post {
 
 Future<List<Post>> fetchPosts() async {
   final response =
-      await http.get(Uri.parse('http://192.168.124.206:3000/api/users/post'));
+      await http.get(Uri.parse('http://192.168.140.206:3000/api/users/post'));
 
   if (response.statusCode == 200) {
     final responseData = json.decode(response.body);
@@ -83,7 +83,7 @@ class PostListWidget extends StatelessWidget {
 
 void like(int postId) async {
   // Define the API endpoint URL
-  final url = Uri.parse('http://192.168.124.206:3000/api/users/like');
+  final url = Uri.parse('http://192.168.140.206:3000/api/users/like');
 
   // Define the request headers (if any)
   final headers = {
@@ -116,7 +116,7 @@ void like(int postId) async {
 
 void unlike(int postId) async {
   // Define the API endpoint URL
-  final url = Uri.parse('http://192.168.124.206:3000/api/users/unlike');
+  final url = Uri.parse('http://192.168.140.206:3000/api/users/unlike');
 
   // Define the request headers (if any)
   final headers = {

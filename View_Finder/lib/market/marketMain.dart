@@ -29,60 +29,6 @@ class _HomePageState extends State<Market> {
           'https://images.pexels.com/photos/5828579/pexels-photo-5828579.jpeg?auto=compress&cs=tinysrgb&w=800',
       'price': 20.0,
     },
-    {
-      'name': 'Product 3',
-      'image':
-          'https://images.pexels.com/photos/11681842/pexels-photo-11681842.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'price': 30.0,
-    },
-    {
-      'name': 'Product 3',
-      'image':
-          'https://images.pexels.com/photos/6674743/pexels-photo-6674743.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'price': 90.0,
-    },
-    {
-      'name': 'Product 3',
-      'image':
-          'https://images.pexels.com/photos/6674743/pexels-photo-6674743.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'price': 90.0,
-    },
-    {
-      'name': 'Product 3',
-      'image':
-          'https://images.pexels.com/photos/11681842/pexels-photo-11681842.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'price': 30.0,
-    },
-    {
-      'name': 'Product 3',
-      'image':
-          'https://images.pexels.com/photos/11681842/pexels-photo-11681842.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'price': 30.0,
-    },
-    {
-      'name': 'Product 3',
-      'image':
-          'https://images.pexels.com/photos/11681842/pexels-photo-11681842.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'price': 30.0,
-    },
-    {
-      'name': 'Product 3',
-      'image':
-          'https://images.pexels.com/photos/11681842/pexels-photo-11681842.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'price': 30.0,
-    },
-    {
-      'name': 'Product 3',
-      'image':
-          'https://images.pexels.com/photos/11681842/pexels-photo-11681842.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'price': 30.0,
-    },
-    {
-      'name': 'Product 3',
-      'image':
-          'https://images.pexels.com/photos/11681842/pexels-photo-11681842.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'price': 30.0,
-    },
   ];
 
   List<String> categoryItems = <String>[
@@ -116,15 +62,22 @@ class _HomePageState extends State<Market> {
     cart.add(products[index]);
   }
 
+  List data = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 144, 143, 143),
       appBar: AppBar(
-        title: Text('Market Place'),
+        title: Text('Market Place',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 191, 191, 191),
+            )),
         flexibleSpace: Container(),
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(255, 90, 90, 90),
         actions: [
           PopupMenuButton<String>(
             onSelected: (String value) {
@@ -137,7 +90,7 @@ class _HomePageState extends State<Market> {
                   child: Row(
                     children: <Widget>[
                       Icon(Icons.category,
-                          color: Colors.black.withOpacity(0.5)),
+                          color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.5)),
                       SizedBox(width: 8.0),
                       Text('Select Category'),
                     ],
@@ -171,7 +124,8 @@ class _HomePageState extends State<Market> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart,
+                color: Color.fromARGB(255, 208, 207, 207).withOpacity(0.8)),
             onPressed: () {
               Navigator.push(
                 context,
@@ -191,12 +145,14 @@ class _HomePageState extends State<Market> {
           children: [
             Column(
               children: [
+                SizedBox(height: 15),
                 Container(
                   height: 45,
+                  width: 400,
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.grey[200],
+                    color: Color.fromARGB(255, 226, 225, 225),
                   ),
                   child: Row(
                     children: [
@@ -206,6 +162,8 @@ class _HomePageState extends State<Market> {
                         child: TextField(
                           decoration: InputDecoration(
                             hintText: 'Search',
+                            hintStyle: TextStyle(
+                                color: const Color.fromARGB(255, 91, 91, 91)),
                             border: InputBorder.none,
                           ),
                         ),
@@ -213,7 +171,7 @@ class _HomePageState extends State<Market> {
                     ],
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 10),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -233,8 +191,8 @@ class _HomePageState extends State<Market> {
                       padding: EdgeInsets.all(2),
                       itemCount: products.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.80,
+                        crossAxisCount: 1,
+                        childAspectRatio: 0.55,
                         crossAxisSpacing: 5,
                         mainAxisSpacing: 5,
                       ),
@@ -362,7 +320,7 @@ class _ProductItemState extends State<ProductItem> {
                           ),
                         ),
                         borderRadius: BorderRadius.circular(24),
-                        backgroundColor: Color.fromARGB(255, 198, 221, 48),
+                        backgroundColor: Color.fromARGB(255, 65, 65, 65),
                         onPressed: (id) {
                           if (id == AddToCartButtonStateId.idle) {
                             //handle logic when pressed on idle state button.

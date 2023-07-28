@@ -11,6 +11,10 @@ import 'package:login/News_feed/search_screen.dart';
 import 'package:login/News_feed/shop_screen.dart';
 import 'package:login/market/marketMain.dart';
 
+import '../CameraRenting/showrentpost.dart';
+import '../calendar.dart';
+import '../market/mArket.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -23,9 +27,9 @@ class _MainScreenState extends State<MainScreen> {
 
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    SearchScreen(),
-    ReelsScreen(),
-    Market(),
+    RentPost(),
+    Calendar(),
+    MarkeTs(),
     ProfileScreen()
   ];
 
@@ -60,3 +64,18 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
+
+ // bottomNavigationBar: CurvedNavigationBar(
+      //   backgroundColor: Colors.transparent,
+      //   color: Color.fromARGB(255, 255, 255, 255),
+      //   buttonBackgroundColor: Colors.white,
+      //   height: 50,
+      //   items: const <Widget>[
+      //     Icon(Icons.home, size: 30, color: Color.fromARGB(255, 0, 0, 0)),
+      //     Icon(Icons.search, size: 30, color: Colors.black),
+      //     Icon(Icons.video_collection, size: 30, color: Colors.black),
+      //     Icon(Icons.shopping_bag, size: 30, color: Colors.black),
+      //     Icon(Icons.person, size: 30, color: Colors.black),
+      //   ],
+      //   onTap: _onItemTapped,
+      // ),
