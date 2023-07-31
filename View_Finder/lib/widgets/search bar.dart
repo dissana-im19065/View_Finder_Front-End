@@ -10,19 +10,19 @@ class CustomText extends StatelessWidget {
   final _textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    
     return Container(
-      margin: EdgeInsets.only(top: 5.0,left: 0),
-      height: 70,
+      margin: EdgeInsets.only(top: 15.0, left: 0),
+      height: 48,
       width: 700,
       child: Center(
         child: TextField(
           style: TextStyle(
-              color: const Color.fromARGB(255, 255, 255, 255), // Set the text color
-            ),
+            color:
+                const Color.fromARGB(255, 255, 255, 255), // Set the text color
+          ),
           controller: _textController,
           decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
             fillColor: Colors.grey.shade700,
             prefixIconColor: Colors.white,
             filled: true,
@@ -33,8 +33,6 @@ class CustomText extends StatelessWidget {
             ),
             hintStyle: TextStyle(color: Colors.grey),
             hintText: 'search here',
-            
-            
           ),
         ),
       ),

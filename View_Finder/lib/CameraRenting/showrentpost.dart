@@ -17,7 +17,7 @@ class _MyHomePageState extends State<RentPost> {
 
   Future<String> getData() async {
     var response = await http
-        .get(Uri.parse("http://192.168.140.206:3000/api/users/rents"));
+        .get(Uri.parse("http://192.168.105.206:3000/api/users/rents"));
 
     setState(() {
       var decodedData = jsonDecode(response.body);

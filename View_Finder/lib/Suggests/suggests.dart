@@ -41,13 +41,23 @@ class Post {
 
 //int user_Id = 0;
 
-Future<List<Post>> fetchPosts() async {
-  final response =
-      await http.get(Uri.parse('http://192.168.105.206:3000/api/users/post'));
+Future<List<Post>> fetchSuggests() async {
+  final url = ('http://192.168.105.206:3000/api/users/suggests');
+
+      final headers = {'Content-Type': 'application/json'};
+
+      final userData = {
+        'search': ,
+        
+      };
+
+      final jsonData = json.encode(userData);
+
+      final response =
+            await http.post(Uri.parse(url), headers: headers, body: jsonData);
 
   if (response.statusCode == 200) {
-    final responseData = json.decode(response.body);
-    print(responseData);
+    
 
     final parsed =
         jsonDecode(response.body)['data'].cast<Map<String, dynamic>>();
@@ -61,7 +71,7 @@ class PostListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Post>>(
-      future: fetchPosts(),
+      future: fetchSuggests(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           print("sss" + snapshot.data!.toString());

@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../register_page.dart';
 
+String userType = '';
+
 class UserTypeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,11 @@ class UserTypeScreen extends StatelessWidget {
                   height: 60,
                   child: TextButton(
                     onPressed: () {
+                      userType = 'PHOTOGRAPHER';
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                      );
                       // Handle photographer button press
                     },
                     // style: ButtonStyle(
@@ -70,6 +77,11 @@ class UserTypeScreen extends StatelessWidget {
                   height: 60,
                   child: TextButton(
                     onPressed: () {
+                      userType = 'SERVICE PROVIDER';
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                      );
                       // Handle photographer button press
                     },
                     // style: ButtonStyle(
@@ -82,7 +94,7 @@ class UserTypeScreen extends StatelessWidget {
                     //   ),
                     // ),
                     child: Text(
-                      'RENTING SERVICE',
+                      'SERVICE PROVIDER',
                       style: GoogleFonts.lato(
                         textStyle: TextStyle(
                           fontSize: 24,
@@ -99,6 +111,11 @@ class UserTypeScreen extends StatelessWidget {
                   height: 60,
                   child: TextButton(
                     onPressed: () {
+                      userType = 'CUSTOMER';
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                      );
                       // Handle photographer button press
                     },
                     // style: ButtonStyle(
@@ -123,34 +140,34 @@ class UserTypeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 60),
-                SizedBox(
-                  width: 800,
-                  height: 60,
-                  child: TextButton(
-                    onPressed: () {
-                      // Handle photographer button press
-                    },
-                    // style: ButtonStyle(
-                    //   backgroundColor: MaterialStateProperty.all<Color>(
-                    //       Color.fromARGB(154, 255, 255, 255)),
-                    //   foregroundColor:
-                    //       MaterialStateProperty.all<Color>(Colors.white),
-                    //   padding: MaterialStateProperty.all<EdgeInsets>(
-                    //     EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    //   ),
-                    // ),
-                    child: Text(
-                      'VENDOR',
-                      style: GoogleFonts.lato(
-                        textStyle: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 77, 76, 76),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // SizedBox(
+                //   width: 800,
+                //   height: 60,
+                //   child: TextButton(
+                //     onPressed: () {
+                //       // Handle photographer button press
+                //     },
+                //     // style: ButtonStyle(
+                //     //   backgroundColor: MaterialStateProperty.all<Color>(
+                //     //       Color.fromARGB(154, 255, 255, 255)),
+                //     //   foregroundColor:
+                //     //       MaterialStateProperty.all<Color>(Colors.white),
+                //     //   padding: MaterialStateProperty.all<EdgeInsets>(
+                //     //     EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                //     //   ),
+                //     // ),
+                //     child: Text(
+                //       'VENDOR',
+                //       style: GoogleFonts.lato(
+                //         textStyle: TextStyle(
+                //           fontSize: 24,
+                //           fontWeight: FontWeight.bold,
+                //           color: Color.fromARGB(255, 77, 76, 76),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 SizedBox(height: 150),
                 TextButton(
                   onPressed: () {

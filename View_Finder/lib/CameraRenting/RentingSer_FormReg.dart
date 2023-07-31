@@ -141,7 +141,7 @@ class _AddPostWidgetState extends State<AddPostWidget> {
   UploadTask? uploadTask;
 
   Future<void> createPost(imageurl1, imageurl2, imageurl3) async {
-    final url = 'http://192.168.140.206:3000/api/users/rent';
+    final url = 'http://192.168.105.206:3000/api/users/rent';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {

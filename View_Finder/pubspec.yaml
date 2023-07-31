@@ -60,6 +60,8 @@ dependencies:
   water_drop_nav_bar: ^2.2.0+5
   scroll_bottom_navigation_bar: ^4.0.0
   image_picker: ^1.0.1
+  sqflite: ^2.0.0+3
+  mysql1: ^0.20.0
 
 dev_dependencies:
   flutter_test:

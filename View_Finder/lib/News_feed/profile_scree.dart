@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   UploadTask? uploadTask;
 
   Future<void> createPost(imageurl) async {
-    final url = 'http://192.168.140.206:3000/api/users/post';
+    final url = 'http://192.168.105.206:3000/api/users/post';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {
@@ -130,7 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: Colors.black,
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             // title: Text(
             //   firstName.toString() + ' ' + lastName.toString(),
             //   style: TextStyle(fontWeight: FontWeight.bold),
@@ -151,7 +151,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Text(
                         'LOGOUT     ',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Color.fromARGB(255, 0, 0, 0)),
                       ),
                     ),
                   ),

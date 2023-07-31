@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'News_feed/user_type.dart';
 import 'login_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -43,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool isRePasswordValid = false;
 
   Future<void> registerUser() async {
-    final url = 'http://192.168.140.206:3000/api/users/';
+    final url = 'http://192.168.105.206:3000/api/users/';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {
@@ -52,6 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
       'email': emailController.text,
       'phone': phoneController.text,
       'password': passwordController.text,
+      'userType': userType,
     };
 
     final jsonData = json.encode(userData);
@@ -85,10 +87,10 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('images/1.jpg'),
+          image: AssetImage('images/eeee.jpg'),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(1.0), BlendMode.dstATop),
+              Colors.black.withOpacity(0.4), BlendMode.dstATop),
         ),
       ),
       child: Scaffold(
@@ -116,11 +118,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         TextSpan(
                             text: 'V',
                             style: TextStyle(
-                                color: Color.fromARGB(255, 223, 223, 223))),
+                                color: Color.fromARGB(255, 255, 255, 255))),
                         TextSpan(
                             text: 'iew',
                             style: TextStyle(
-                                color: Color.fromARGB(255, 219, 219, 219))),
+                                color: Color.fromARGB(255, 255, 255, 255))),
                         TextSpan(
                             text: ' F',
                             style: TextStyle(
@@ -138,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0),
+                    color: Color.fromARGB(255, 211, 211, 211),
                   ),
                 ),
 
@@ -150,7 +152,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: firstNameController,
                     decoration: InputDecoration(
                       labelText: 'First Name',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ),
+                      labelStyle: TextStyle(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                      ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -320,44 +329,44 @@ class _RegisterPageState extends State<RegisterPage> {
                           });
                         },
                       ),
-                      SizedBox(height: 8.0),
-                      Text(
-                        'A strong password:',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 4.0),
-                      Text(
-                        '- Is at least 8 characters long',
-                        style: TextStyle(
-                          color: isPasswordValid ? Colors.green : Colors.red,
-                        ),
-                      ),
-                      Text(
-                        '- Contains at least one uppercase letter',
-                        style: TextStyle(
-                          color: isPasswordValid ? Colors.green : Colors.red,
-                        ),
-                      ),
-                      Text(
-                        '- Contains at least one lowercase letter',
-                        style: TextStyle(
-                          color: isPasswordValid ? Colors.green : Colors.red,
-                        ),
-                      ),
-                      Text(
-                        '- Contains at least one digit',
-                        style: TextStyle(
-                          color: isPasswordValid ? Colors.green : Colors.red,
-                        ),
-                      ),
-                      Text(
-                        '- Avoids common passwords',
-                        style: TextStyle(
-                          color: isPasswordValid ? Colors.green : Colors.red,
-                        ),
-                      ),
+                      // SizedBox(height: 8.0),
+                      // Text(
+                      //   'A strong password:',
+                      //   style: TextStyle(
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
+                      // SizedBox(height: 4.0),
+                      // Text(
+                      //   '- Is at least 8 characters long',
+                      //   style: TextStyle(
+                      //     color: isPasswordValid ? Colors.green : Colors.red,
+                      //   ),
+                      // ),
+                      // Text(
+                      //   '- Contains at least one uppercase letter',
+                      //   style: TextStyle(
+                      //     color: isPasswordValid ? Colors.green : Colors.red,
+                      //   ),
+                      // ),
+                      // Text(
+                      //   '- Contains at least one lowercase letter',
+                      //   style: TextStyle(
+                      //     color: isPasswordValid ? Colors.green : Colors.red,
+                      //   ),
+                      // ),
+                      // Text(
+                      //   '- Contains at least one digit',
+                      //   style: TextStyle(
+                      //     color: isPasswordValid ? Colors.green : Colors.red,
+                      //   ),
+                      // ),
+                      // Text(
+                      //   '- Avoids common passwords',
+                      //   style: TextStyle(
+                      //     color: isPasswordValid ? Colors.green : Colors.red,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

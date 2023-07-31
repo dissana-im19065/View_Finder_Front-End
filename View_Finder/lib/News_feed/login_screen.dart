@@ -7,8 +7,8 @@ import 'package:login/News_feed/register_screen.dart';
 
 import '../screens/main_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class Login2Screen extends StatelessWidget {
+  const Login2Screen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:login/login_page.dart';
 import 'dart:convert';
 
+import '../News_feed/search_screen.dart';
 import '../widgets/circle_story.dart';
 
 class MarkeTs extends StatefulWidget {
@@ -17,7 +18,7 @@ class _MyHomePageState extends State<MarkeTs> {
 
   Future<String> getData() async {
     var response =
-        await http.get(Uri.parse("http://192.168.140.206:3000/api/users/adds"));
+        await http.get(Uri.parse("http://192.168.105.206:3000/api/users/adds"));
 
     setState(() {
       var decodedData = jsonDecode(response.body);
@@ -45,7 +46,11 @@ class _MyHomePageState extends State<MarkeTs> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              // showSearch(context: context, delegate: DataSearch(data));
+              // navigate
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchMarket()),
+              );
             },
           ),
         ],

@@ -19,6 +19,7 @@ class LoginPage extends StatefulWidget {
 int userId = 0;
 String firstName = '';
 String lastName = '';
+String usertype = '';
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController usernameController = TextEditingController();
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       SharedPreferences.getInstance();
 
   Future<void> loginUser() async {
-    final url = 'http://192.168.140.206:3000/api/users/login';
+    final url = 'http://192.168.105.206:3000/api/users/login';
     final headers = {'Content-Type': 'application/json'};
     final loginData = {
       'email': usernameController.text,
@@ -48,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
         userId = responseData['result']['user_id'];
         firstName = responseData['result']['first_name'];
         lastName = responseData['result']['last_name'];
+        usertype = responseData['result']['userType'];
 
         print('userid' + userId.toString());
 

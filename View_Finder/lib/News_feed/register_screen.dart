@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:login/News_feed/login_screen.dart';
+import 'package:login/login_page.dart';
 import 'package:login/screens/main_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -202,7 +203,7 @@ class RegisterScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => LoginPage(),
                         ),
                       );
                     },
