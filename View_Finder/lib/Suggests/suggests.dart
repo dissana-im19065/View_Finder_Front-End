@@ -8,6 +8,8 @@ import 'package:login/widgets/circle_story.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 
+import '../News_feed/home_screen.dart';
+
 class Post {
   final int userId;
   final String firstName;
@@ -42,23 +44,21 @@ class Post {
 //int user_Id = 0;
 
 Future<List<Post>> fetchSuggests() async {
+  print("bbbbbbbb" + Suggest);
   final url = ('http://192.168.105.206:3000/api/users/suggests');
 
-      final headers = {'Content-Type': 'application/json'};
+  final headers = {'Content-Type': 'application/json'};
 
-      final userData = {
-        'search': ,
-        
-      };
+  final userData = {
+    'suggests': Suggest,
+  };
 
-      final jsonData = json.encode(userData);
+  final jsonData = json.encode(userData);
 
-      final response =
-            await http.post(Uri.parse(url), headers: headers, body: jsonData);
+  final response =
+      await http.post(Uri.parse(url), headers: headers, body: jsonData);
 
   if (response.statusCode == 200) {
-    
-
     final parsed =
         jsonDecode(response.body)['data'].cast<Map<String, dynamic>>();
     return parsed.map<Post>((json) => Post.fromJson(json)).toList();
@@ -169,6 +169,11 @@ class _PostWidgetState extends State<PostWidget> {
 
   int _likeCount = 0;
 
+  initState() {
+    super.initState();
+    // fetchSuggests();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -180,7 +185,7 @@ class _PostWidgetState extends State<PostWidget> {
               Column(
                 children: const [
                   Padding(
-                    padding: EdgeInsets.only(left: 20.0, top: 5),
+                    padding: EdgeInsets.only(left: 20.0, top: 15),
                     child:
                         SizedBox(height: 55, width: 55, child: CircleStory()),
                   ),
@@ -352,8 +357,8 @@ class _PostWidgetState extends State<PostWidget> {
   }
 }
 
-class PostCart extends StatelessWidget {
-  const PostCart({Key? key})
+class SuggestCart extends StatelessWidget {
+  const SuggestCart({Key? key})
       : super(key: key); //const PostCart({Key? key}) : super(key: key);
 
   @override

@@ -296,7 +296,7 @@ class _PostWidgetState extends State<PostWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "123 likes",
+                  widget.post.likecount.toString() + ' likes',
                   style: GoogleFonts.alegreyaSans(
                       fontWeight: FontWeight.bold,
                       color: const Color.fromARGB(255, 255, 255, 255)),

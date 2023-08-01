@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'News_feed/user_type.dart';
-import 'customer/customer_profile.dart';
+import 'profiles/customer_profile.dart';
 import 'login_page.dart';
 import 'package:login/screens/main_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -7,16 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:login/CameraRenting/showrentpost.dart';
 import 'package:login/News_feed/home_screen.dart';
 import 'package:login/News_feed/login_screen.dart';
-import 'package:login/News_feed/profile_scree.dart';
+import 'package:login/profiles/profile_scree.dart';
 import 'package:login/News_feed/reels_screen.dart';
 import 'package:login/News_feed/search_screen.dart';
 import 'package:login/News_feed/shop_screen.dart';
 import 'package:login/News_feed/user_type.dart';
 import 'package:login/market/marketMain.dart';
 
+import '../profiles/serviceProvider.dart';
 import '../calendar.dart';
 import '../customer requests/customerRequest.dart';
-import '../customer/customer_profile.dart';
+import '../profiles/customer_profile.dart';
 import '../login_page.dart';
 import '../market/mArket.dart';
 
@@ -49,13 +50,14 @@ class _MainScreenState extends State<MainScreen> {
       } else if (usertype == 'CUSTOMER') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CusProfileScreen()),
+          MaterialPageRoute(builder: (context) => CustomerProfileScreen()),
         );
         // Perform some other action, such as displaying a message
       } else if (usertype == 'SERVICE PROVIDER') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
+          MaterialPageRoute(
+              builder: (context) => ServiceProviderProfileScreen()),
         );
       } else {
         Navigator.push(

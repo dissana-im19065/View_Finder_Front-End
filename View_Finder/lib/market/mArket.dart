@@ -1,12 +1,15 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:login/login_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
 
 import '../News_feed/search_screen.dart';
 import '../widgets/circle_story.dart';
+
+String phone = '';
 
 class MarkeTs extends StatefulWidget {
   @override
@@ -39,8 +42,47 @@ class _MyHomePageState extends State<MarkeTs> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
+        toolbarHeight: 85,
+        automaticallyImplyLeading: false,
+        centerTitle: false,
+        elevation: 0,
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
-        title: Text("MARKET PLACE"),
+        title: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 40,
+                  width: 150,
+                  child: Image(image: AssetImage('images/logo.png')),
+                ),
+              ],
+            ),
+          ],
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // SizedBox(
+              //   width: 24,
+              // ),
+              Text(
+                "MARKET PLACE",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(
+                height: 60,
+              )
+            ],
+          ),
+        ),
         //search bar
         actions: <Widget>[
           IconButton(
@@ -224,53 +266,75 @@ class _MyHomePageState extends State<MarkeTs> {
 
                   SizedBox(height: 25),
                   Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 35,
-                          width: 189,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Color.fromRGBO(
-                                76,
-                                175,
-                                80,
-                                1,
-                              )), // Set the background color of the button
+                    child: Container(
+                      height: 60,
+                      color: Color.fromARGB(255, 211, 211, 211),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 30,
+                            width: 189,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0.0),
+                                  ),
+                                ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Color.fromRGBO(
+                                  76,
+                                  175,
+                                  80,
+                                  1,
+                                )), // Set the background color of the button
+                              ),
+                              onPressed: () {
+                                phone = data[index]['contactNo'].toString();
+                                launch("tel:$phone");
+                              },
+                              child: Text('Phone',
+                                  style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 42, 41, 41))),
                             ),
-                            onPressed: () {},
-                            child: Text('Phone',
-                                style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 42, 41, 41))),
                           ),
-                        ),
-                        SizedBox(width: 15),
-                        SizedBox(
-                          height: 35,
-                          width: 189,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Color.fromRGBO(
-                                76,
-                                175,
-                                80,
-                                1,
-                              )), // Set the background color of the button
+                          SizedBox(width: 15),
+                          SizedBox(
+                            height: 30,
+                            width: 189,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0.0),
+                                  ),
+                                ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Color.fromRGBO(
+                                  76,
+                                  175,
+                                  80,
+                                  1,
+                                )), // Set the background color of the button
+                              ),
+                              onPressed: () => launch(
+                                  'https://wa.me/$phone?text=Hello I am From VIEW FINDER App'),
+                              child: Text('Whatsapp',
+                                  style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 50, 49, 49))),
                             ),
-                            onPressed: () {},
-                            child: Text('Whatsapp',
-                                style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 50, 49, 49))),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 25),

@@ -3,20 +3,19 @@
 import 'package:flutter/material.dart';
 import 'package:login/widgets/post_cart.dart';
 
-import '../Suggests/suggestHome.dart';
+import '../News_feed/home_screen.dart';
 import '../Suggests/suggests.dart';
+import '../screens/main_screen.dart';
 // import 'package:login/widgets/story_widget.dart';
 
-String Suggest = '';
-
-class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+class suggestScreen extends StatefulWidget {
+  suggestScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<suggestScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<suggestScreen> {
   // final List _stories = ['story 1', 'story 2', 'story 3', 'story 4', 'story 5', 'story 6', 'story 7', 'story 8', 'story 9', 'story 10'];
   final List _posts = [
     'post 1',
@@ -36,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        toolbarHeight: 55,
+        toolbarHeight: 80,
         automaticallyImplyLeading: false,
         centerTitle: false,
         elevation: 0,
@@ -46,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(height: 10),
                 SizedBox(
                   height: 70,
                   width: 180,
@@ -179,7 +179,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         setState(() {
                           Suggest = 'Wedding';
                         });
-
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -800,6 +799,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(width: 10),
                   ],
                 ),
+                SizedBox(height: 20),
               ],
             ),
           ),
@@ -832,12 +832,8 @@ class _HomeScreenState extends State<HomeScreen> {
         //   )
         // ],
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Divider(
-            color: Colors.grey,
-            thickness: 0.25,
-          ),
           Container(
             color: Color.fromARGB(255, 0, 0, 0),
             height: 15,
@@ -864,8 +860,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: _posts.length,
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
-                  return PostCart();
+                  return SuggestCart();
                 }),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 350, top: 710),
+            child: FloatingActionButton(
+              elevation: 0.0, // Removes the border or elevation
+              highlightElevation: 0.0,
+
+              backgroundColor: Colors.green,
+
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainScreen()),
+                );
+              },
+              child: Icon(Icons.home,
+                  size: 40, color: Color.fromARGB(255, 255, 255, 255)),
+            ),
           ),
         ],
       ),

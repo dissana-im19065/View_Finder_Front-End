@@ -27,6 +27,7 @@ class Calendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: MyTableCalendar(),
       ),
@@ -52,7 +53,7 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
       'Accept': 'application/json',
     };
     final body = {
-      'user_id': 25,
+      'user_id': userId,
     };
     final jsonBody = json.encode(body);
     final response = await http.post(url, headers: headers, body: jsonBody);
@@ -70,7 +71,7 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
   }
 
   Future<void> _bookDate(DateTime date, String note) async {
-    final url = Uri.parse('http://192.168.190.206:3000/api/users/event');
+    final url = Uri.parse('http://192.168.105.206:3000/api/users/event');
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -112,8 +113,47 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Table Calendar'),
+        toolbarHeight: 85,
+        automaticallyImplyLeading: false,
+        centerTitle: false,
+        elevation: 0,
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        title: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 40,
+                  width: 150,
+                  child: Image(image: AssetImage('images/logo.png')),
+                ),
+              ],
+            ),
+          ],
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // SizedBox(
+              //   width: 24,
+              // ),
+              Text(
+                "MY CALENDAR",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(
+                height: 60,
+              )
+            ],
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {

@@ -13,7 +13,7 @@ import 'package:login/market/mArket.dart';
 import 'package:mime/mime.dart';
 
 import '../News_feed/home_screen.dart';
-import '../News_feed/profile_scree.dart';
+import '../profiles/profile_scree.dart';
 import '../login_page.dart';
 import 'package:http/http.dart' as http;
 
