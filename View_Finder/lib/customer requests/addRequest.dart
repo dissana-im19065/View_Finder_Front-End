@@ -19,7 +19,7 @@ class _MyFormState extends State<MyRequestForm> {
   final TextEditingController _wantDateController = TextEditingController();
 
   Future<void> _submitData() async {
-    final url = Uri.parse('http://192.168.105.206:3000/api/users/req');
+    final url = Uri.parse('http://192.168.184.206:3000/api/users/req');
     try {
       final response = await http.post(
         url,

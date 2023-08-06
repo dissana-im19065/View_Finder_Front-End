@@ -21,7 +21,7 @@ class _MyHomePageState extends State<CusRequests> {
 
   Future<String> getData() async {
     var response =
-        await http.get(Uri.parse("http://192.168.105.206:3000/api/users/req"));
+        await http.get(Uri.parse("http://192.168.184.206:3000/api/users/req"));
 
     setState(() {
       var decodedData = jsonDecode(response.body);
@@ -166,7 +166,7 @@ class _MyHomePageState extends State<CusRequests> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(height: 10),
-                      Text('Rs. ' + data[index]['category'] + '.00',
+                      Text(data[index]['category'],
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -190,15 +190,7 @@ class _MyHomePageState extends State<CusRequests> {
                   ),
                   SizedBox(height: 20),
 
-                  Text(
-                      'location         :                                        ' +
-                          data[index]['location'],
-                      style:
-                          const TextStyle(fontSize: 15, color: Colors.white)),
-
-                  Text(
-                      'Category    :                                        ' +
-                          data[index]['category'],
+                  Text(data[index]['location'],
                       style:
                           const TextStyle(fontSize: 15, color: Colors.white)),
 

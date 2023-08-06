@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:login/profiles/profile_scree.dart';
 import 'package:login/login_page.dart';
 
+import 'addReview.dart';
+
 class ReviewsScreen extends StatefulWidget {
   ReviewsScreen({Key? key}) : super(key: key);
 
@@ -24,7 +26,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
   }
 
   Future<void> _fetchReviews() async {
-    final url = 'http://192.168.105.206:3000/api/users/revv';
+    final url = 'http://192.168.184.206:3000/api/users/revv';
 
     final headers = {'Content-Type': 'application/json'};
 
@@ -85,7 +87,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
                 width: 25,
               ),
               Text(
-                "Reviews On" + firstName + " " + lastName + "",
+                "Reviews",
                 style: TextStyle(
                   fontSize: 25,
                   color: Colors.white,
@@ -170,6 +172,24 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 350, top: 730),
+          child: FloatingActionButton(
+            elevation: 0.0, // Removes the border or elevation
+            highlightElevation: 0.0,
+
+            backgroundColor: Colors.green,
+
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ReviewFormPopup()),
+              );
+            },
+            child: Icon(Icons.add,
+                size: 40, color: Color.fromARGB(255, 255, 255, 255)),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 20, top: 730),
           child: FloatingActionButton(
             elevation: 0.0, // Removes the border or elevation
             highlightElevation: 0.0,

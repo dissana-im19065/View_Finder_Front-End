@@ -141,7 +141,7 @@ class _AddPostWidgetState extends State<AddPostWidget> {
   UploadTask? uploadTask;
 
   Future<void> createPost(imageurl1, imageurl2, imageurl3) async {
-    final url = 'http://192.168.105.206:3000/api/users/rent';
+    final url = 'http://192.168.184.206:3000/api/users/rent';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {
@@ -255,8 +255,8 @@ class _AddPostWidgetState extends State<AddPostWidget> {
           borderRadius: BorderRadius.circular(8),
         ),
         child: SingleChildScrollView(
-          child: Expanded(
-            child: Column(
+          child: Stack(children: [
+            Column(
               children: [
                 Container(
                   height: 400,
@@ -312,7 +312,6 @@ class _AddPostWidgetState extends State<AddPostWidget> {
                                 SizedBox(width: 5),
                                 Flexible(
                                   child: TextField(
-                                    keyboardType: TextInputType.number,
                                     controller: descriptionController,
                                     decoration: InputDecoration(
                                       hintText: 'description',
@@ -351,7 +350,7 @@ class _AddPostWidgetState extends State<AddPostWidget> {
                                   child: TextField(
                                     controller: emailController,
                                     decoration: InputDecoration(
-                                      hintText: 'email',
+                                      hintText: 'Brand Name',
                                       border: InputBorder.none,
                                     ),
                                   ),
@@ -366,7 +365,7 @@ class _AddPostWidgetState extends State<AddPostWidget> {
                                     // keyboardType: TextInputType.number,
                                     controller: facebookController,
                                     decoration: InputDecoration(
-                                      hintText: 'facebook',
+                                      hintText: 'category',
                                       border: InputBorder.none,
                                     ),
                                   ),
@@ -374,7 +373,6 @@ class _AddPostWidgetState extends State<AddPostWidget> {
                                 SizedBox(width: 100),
                                 Flexible(
                                   child: TextField(
-                                    keyboardType: TextInputType.number,
                                     controller: instaController,
                                     decoration: InputDecoration(
                                       hintText: 'insta',
@@ -485,7 +483,7 @@ class _AddPostWidgetState extends State<AddPostWidget> {
                 ),
               ],
             ),
-          ),
+          ]),
         ),
       ),
     );

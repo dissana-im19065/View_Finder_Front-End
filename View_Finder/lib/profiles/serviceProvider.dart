@@ -41,7 +41,7 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
   UploadTask? uploadTask;
 
   Future<void> createPost(imageurl) async {
-    final url = 'http://192.168.105.206:3000/api/users/post';
+    final url = 'http://192.168.184.206:3000/api/users/post';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {
@@ -219,7 +219,7 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                         image: AssetImage('images/666.jpg'),
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(1.0), BlendMode.dstATop),
+                            Colors.black.withOpacity(0.6), BlendMode.dstATop),
                       ),
                     ),
                     height: MediaQuery.of(context).size.height,
@@ -251,11 +251,10 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                             ),
                           ],
                         ),
+                        SizedBox(height: 20),
                         Column(
                           children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: 50.0, top: 20, bottom: 20),
+                            Center(
                               child: Text(
                                 usertype,
                                 style: TextStyle(
@@ -348,16 +347,16 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                       },
                                       child: Icon(
                                         Icons.person_add,
-                                        color: const Color.fromARGB(
-                                            255, 36, 36, 36),
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
                                         size: 60,
                                       ),
                                     ),
                                     Text(
                                       "ADD PHOTOS",
                                       style: TextStyle(
-                                          color: const Color.fromARGB(
-                                              255, 36, 36, 36)),
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255)),
                                     ),
                                     SizedBox(height: 30),
                                     //      description to post .................
@@ -368,13 +367,13 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                         maxLines: null,
                                         keyboardType: TextInputType.multiline,
                                         style: TextStyle(
-                                            color: const Color.fromARGB(
-                                                255, 39, 39, 39)),
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255)),
                                         decoration: InputDecoration(
                                           labelText: 'Description',
                                           labelStyle: TextStyle(
-                                              color: const Color.fromARGB(
-                                                  255, 35, 35, 35)),
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255)),
                                           hintText: 'Enter a description',
                                           hintStyle:
                                               TextStyle(color: Colors.white),
@@ -384,7 +383,7 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: Color.fromARGB(
-                                                    255, 156, 156, 156),
+                                                    255, 255, 255, 255),
                                                 width: 2.0),
                                           ),
                                         ),
@@ -407,15 +406,14 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                           fit: BoxFit.cover,
                                         ),
                                       )),
-                                    SizedBox(height: 20),
 
                                     DropdownButton<String>(
                                       iconDisabledColor:
-                                          const Color.fromARGB(255, 82, 81, 81),
+                                          Color.fromARGB(255, 255, 255, 255),
                                       iconEnabledColor:
-                                          const Color.fromARGB(255, 96, 95, 95),
+                                          Color.fromARGB(255, 255, 255, 255),
                                       focusColor:
-                                          const Color.fromARGB(255, 80, 79, 79),
+                                          Color.fromARGB(255, 255, 255, 255),
                                       hint: Text('Select an option'),
                                       menuMaxHeight: 200,
                                       value: _selectedOption,
@@ -445,7 +443,7 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                     // Container(
                                     //   margin: EdgeInsets.only(top: 20),
                                     // ),
-                                    SizedBox(height: 0),
+                                    SizedBox(height: 80),
                                     Container(
                                       margin: EdgeInsets.only(top: 10),
                                       child: Center(
@@ -459,7 +457,7 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                             );
                                           },
                                           child: Text(
-                                            'PUBLISH ADD',
+                                            'PUBLISH To MARKET',
                                             style: TextStyle(
                                               fontSize: 25,
                                               color: Color.fromARGB(
@@ -469,6 +467,7 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                         ),
                                       ),
                                     ),
+                                    SizedBox(height: 30),
                                     Container(
                                       margin: EdgeInsets.only(top: 20),
                                       child: Center(
@@ -481,7 +480,7 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                             );
                                           },
                                           child: Text(
-                                            'Rent Register Form',
+                                            'Rent Your Equipments',
                                             style: TextStyle(
                                               fontSize: 25,
                                               color: Color.fromARGB(
@@ -501,80 +500,11 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      MyRequestForm()),
-                                            );
-                                          },
-                                          child: Text(
-                                            'Any Regest Form',
-                                            style: TextStyle(
-                                              fontSize: 25,
-                                              color: Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(top: 20),
-                                      child: Center(
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ReviewFormPopup()),
-                                            );
-                                          },
-                                          child: Text(
-                                            'ADD REVIEW',
-                                            style: TextStyle(
-                                              fontSize: 25,
-                                              color: Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(top: 20),
-                                      child: Center(
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ReviewsScreen()),
-                                            );
-                                          },
-                                          child: Text(
-                                            'View REVIEWs',
-                                            style: TextStyle(
-                                              fontSize: 25,
-                                              color: Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(top: 20),
-                                      child: Center(
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
                                                       PieChartPage()),
                                             );
                                           },
                                           child: Text(
-                                            'View REVIEWs',
+                                            'View REPORTS',
                                             style: TextStyle(
                                               fontSize: 25,
                                               color: Color.fromARGB(
@@ -584,6 +514,7 @@ class _ProfileScreenState extends State<ServiceProviderProfileScreen> {
                                         ),
                                       ),
                                     ),
+                                    SizedBox(height: 50),
                                   ],
                                 ),
                               ),

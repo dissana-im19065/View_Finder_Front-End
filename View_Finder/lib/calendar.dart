@@ -47,7 +47,7 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
   String _bookNote = '';
 
   Future<List<Data>> _fetchEvents() async {
-    final url = Uri.parse('http://192.168.105.206:3000/api/users/events');
+    final url = Uri.parse('http://192.168.184.206:3000/api/users/events');
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -71,7 +71,7 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
   }
 
   Future<void> _bookDate(DateTime date, String note) async {
-    final url = Uri.parse('http://192.168.105.206:3000/api/users/event');
+    final url = Uri.parse('http://192.168.184.206:3000/api/users/event');
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -141,7 +141,7 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
               //   width: 24,
               // ),
               Text(
-                "MY CALENDAR",
+                "EVENT CALENDAR",
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,

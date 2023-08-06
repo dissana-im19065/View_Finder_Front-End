@@ -8,6 +8,8 @@ import 'package:login/widgets/circle_story.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 
+import '../reviews/showReviews.dart';
+
 class Post {
   final int userId;
   final String firstName;
@@ -43,7 +45,7 @@ class Post {
 
 Future<List<Post>> fetchPosts() async {
   final response =
-      await http.get(Uri.parse('http://192.168.105.206:3000/api/users/post'));
+      await http.get(Uri.parse('http://192.168.184.206:3000/api/users/post'));
 
   if (response.statusCode == 200) {
     final responseData = json.decode(response.body);
@@ -83,7 +85,7 @@ class PostListWidget extends StatelessWidget {
 
 void like(int postId) async {
   // Define the API endpoint URL
-  final url = Uri.parse('http://192.168.105.206:3000/api/users/like');
+  final url = Uri.parse('http://192.168.184.206:3000/api/users/like');
 
   // Define the request headers (if any)
   final headers = {
@@ -116,7 +118,7 @@ void like(int postId) async {
 
 void unlike(int postId) async {
   // Define the API endpoint URL
-  final url = Uri.parse('http://192.168.105.206:3000/api/users/unlike');
+  final url = Uri.parse('http://192.168.184.206:3000/api/users/unlike');
 
   // Define the request headers (if any)
   final headers = {
@@ -320,10 +322,22 @@ class _PostWidgetState extends State<PostWidget> {
             padding: const EdgeInsets.only(left: 10, top: 20),
             child: Row(
               children: [
-                Text(
-                  '54 comments',
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 232, 232, 232)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ReviewsScreen()),
+                    );
+                  },
+                  child: Center(
+                    child: Text(
+                      'View Reviews',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 70, 127, 214),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

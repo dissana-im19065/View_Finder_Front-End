@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart' as http;
+import 'package:login/screens/main_screen.dart';
 
 import '../profiles/profile_scree.dart';
 import '../login_page.dart';
@@ -16,7 +17,7 @@ class _ReviewFormPopupState extends State<ReviewFormPopup> {
   double _currentRating = 0;
 
   Future<void> _submitReview() async {
-    final url = Uri.parse('http://192.168.105.206:3000/api/users/rev');
+    final url = Uri.parse('http://192.168.184.206:3000/api/users/rev');
     try {
       final response = await http.post(
         url,
@@ -59,7 +60,7 @@ class _ReviewFormPopupState extends State<ReviewFormPopup> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ProfileScreen()),
+                    MaterialPageRoute(builder: (context) => MainScreen()),
                   );
                 },
                 child: Text('OK'),

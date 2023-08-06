@@ -19,7 +19,7 @@ class _MyHomePageState extends State<SearchMarket> {
 
   Future<void> getData() async {
     if (_searchController.text != '' || _searchController.text != null) {
-      final url = 'http://192.168.105.206:3000/api/users/searchadds';
+      final url = 'http://192.168.184.206:3000/api/users/searchadds';
       final headers = {'Content-Type': 'application/json'};
 
       final userData = {
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<SearchMarket> {
       }
     } else if ((dropdownValue1 != '' || dropdownValue1 != null) &&
         (dropdownValue2 == '' || dropdownValue2 == null)) {
-      final url = 'http://192.168.105.206:3000/api/users/searchadds';
+      final url = 'http://192.168.184.206:3000/api/users/searchadds';
       final headers = {'Content-Type': 'application/json'};
 
       final userData = {
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<SearchMarket> {
       }
     } else if ((dropdownValue1 != '' || dropdownValue1 != null) &&
         (dropdownValue2 != '' || dropdownValue2 != null)) {
-      final url = 'http://192.168.105.206:3000/api/users/searchadds';
+      final url = 'http://192.168.184.206:3000/api/users/searchadds';
       final headers = {'Content-Type': 'application/json'};
 
       final userData = {
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<SearchMarket> {
       }
     } else if ((dropdownValue2 != '' || dropdownValue2 != null) &&
         (dropdownValue1 == '' || dropdownValue1 == null)) {
-      final url = 'http://192.168.105.206:3000/api/users/searchadds';
+      final url = 'http://192.168.184.206:3000/api/users/searchadds';
       final headers = {'Content-Type': 'application/json'};
 
       final userData = {

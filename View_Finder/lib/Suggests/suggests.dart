@@ -45,7 +45,7 @@ class Post {
 
 Future<List<Post>> fetchSuggests() async {
   print("bbbbbbbb" + Suggest);
-  final url = ('http://192.168.105.206:3000/api/users/suggests');
+  final url = ('http://192.168.184.206:3000/api/users/suggests');
 
   final headers = {'Content-Type': 'application/json'};
 
@@ -93,7 +93,7 @@ class PostListWidget extends StatelessWidget {
 
 void like(int postId) async {
   // Define the API endpoint URL
-  final url = Uri.parse('http://192.168.105.206:3000/api/users/like');
+  final url = Uri.parse('http://192.168.184.206:3000/api/users/like');
 
   // Define the request headers (if any)
   final headers = {
@@ -126,7 +126,7 @@ void like(int postId) async {
 
 void unlike(int postId) async {
   // Define the API endpoint URL
-  final url = Uri.parse('http://192.168.105.206:3000/api/users/unlike');
+  final url = Uri.parse('http://192.168.184.206:3000/api/users/unlike');
 
   // Define the request headers (if any)
   final headers = {

@@ -69,45 +69,45 @@ class PieChartPage extends StatelessWidget {
       PieChartSectionData(
         color: Colors.blue,
         value: 25,
-        title: 'Blue',
+        title: 'Photographers',
         radius: 50,
         titleStyle: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
       PieChartSectionData(
         color: Colors.red,
         value: 35,
-        title: 'Red',
+        title: 'Customers',
         radius: 50,
         titleStyle: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
       PieChartSectionData(
         color: Colors.green,
         value: 40,
-        title: 'Green',
+        title: 'Renting',
         radius: 50,
         titleStyle: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
       PieChartSectionData(
         color: Color.fromARGB(255, 175, 76, 158),
         value: 40,
-        title: 'Green',
+        title: 'Vendors',
         radius: 50,
         titleStyle: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
     ];

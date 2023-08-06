@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       SharedPreferences.getInstance();
 
   Future<void> loginUser() async {
-    final url = 'http://192.168.105.206:3000/api/users/login';
+    final url = 'http://192.168.184.206:3000/api/users/login';
     final headers = {'Content-Type': 'application/json'};
     final loginData = {
       'email': usernameController.text,

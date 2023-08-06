@@ -145,7 +145,7 @@ class _AddPostWidgetState extends State<AddPostWidget> {
   }
 
   Future<void> createPost(imageurl) async {
-    final url = 'http://192.168.105.206:3000/api/users/adds';
+    final url = 'http://192.168.184.206:3000/api/users/adds';
     final headers = {'Content-Type': 'application/json'};
 
     final userData = {
@@ -244,217 +244,219 @@ class _AddPostWidgetState extends State<AddPostWidget> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: SingleChildScrollView(
-          child: Expanded(
-            child: Column(
-              children: [
-                Container(
-                  height: 200,
-                  child: Expanded(
-                    child: Column(
+      child: Stack(children: [
+        Container(
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: SingleChildScrollView(
+            child: Expanded(
+              child: Column(
+                children: [
+                  Container(
+                    height: 200,
+                    child: Expanded(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              // Padding(
+                              //   padding: EdgeInsets.only(top: 0.0, bottom: 0),
+                              //   child: SizedBox(
+                              //       height: 50, width: 50, child: CircleStory()),
+                              // ),
+                              // SizedBox(width: 8),
+                              // Text(firstName + ' ' + lastName),
+                            ],
+                          ),
+                          SizedBox(height: 3),
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  SizedBox(width: 5),
+                                  Flexible(
+                                    child: TextField(
+                                      controller: titleController,
+                                      // controller: _controller,
+
+                                      decoration: InputDecoration(
+                                        hintText: 'TITLE',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 100),
+                                  Flexible(
+                                    child: TextField(
+                                      controller: subtitleController,
+                                      decoration: InputDecoration(
+                                        hintText: 'SubTITLE',
+                                        hintStyle: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 150, 148, 148),
+                                        ),
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 5),
+                                  Flexible(
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                      controller: priceController,
+                                      decoration: InputDecoration(
+                                        hintText: 'PRICE',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 100),
+                                  Flexible(
+                                    child: TextField(
+                                      controller: categoryController,
+                                      decoration: InputDecoration(
+                                        hintText: 'CATEGORY',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 5),
+                                  Flexible(
+                                    child: TextField(
+                                      controller: descriptionController,
+                                      decoration: InputDecoration(
+                                        hintText: 'DESCRIPTION',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 100),
+                                  Flexible(
+                                    child: TextField(
+                                      controller: locationController,
+                                      decoration: InputDecoration(
+                                        hintText: 'LOCATION',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 5),
+                                  Flexible(
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                      controller: contactController,
+                                      decoration: InputDecoration(
+                                        hintText: 'CONTACT',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 100),
+                                  Flexible(
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                      controller: whatsappController,
+                                      decoration: InputDecoration(
+                                        hintText: 'WHATSAPP',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          if (_imageFiles != null)
+                            Expanded(
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  mainAxisSpacing: 8,
+                                  crossAxisSpacing: 8,
+                                ),
+                                itemCount: _imageFiles!.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Image.file(
+                                    File(_imageFiles![index].path),
+                                    fit: BoxFit.cover,
+                                  );
+                                },
+                              ),
+                            ),
+                          SizedBox(height: 5),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Color.fromARGB(255, 150, 148, 148),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
-                            // Padding(
-                            //   padding: EdgeInsets.only(top: 0.0, bottom: 0),
-                            //   child: SizedBox(
-                            //       height: 50, width: 50, child: CircleStory()),
-                            // ),
-                            // SizedBox(width: 8),
-                            // Text(firstName + ' ' + lastName),
-                          ],
-                        ),
-                        SizedBox(height: 3),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(width: 5),
-                                Flexible(
-                                  child: TextField(
-                                    controller: titleController,
-                                    // controller: _controller,
-
-                                    decoration: InputDecoration(
-                                      hintText: 'TITLE',
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 100),
-                                Flexible(
-                                  child: TextField(
-                                    controller: subtitleController,
-                                    decoration: InputDecoration(
-                                      hintText: 'SubTITLE',
-                                      hintStyle: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 150, 148, 148),
-                                      ),
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(width: 5),
-                                Flexible(
-                                  child: TextField(
-                                    keyboardType: TextInputType.number,
-                                    controller: priceController,
-                                    decoration: InputDecoration(
-                                      hintText: 'PRICE',
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 100),
-                                Flexible(
-                                  child: TextField(
-                                    controller: categoryController,
-                                    decoration: InputDecoration(
-                                      hintText: 'CATEGORY',
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(width: 5),
-                                Flexible(
-                                  child: TextField(
-                                    controller: descriptionController,
-                                    decoration: InputDecoration(
-                                      hintText: 'DESCRIPTION',
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 100),
-                                Flexible(
-                                  child: TextField(
-                                    controller: locationController,
-                                    decoration: InputDecoration(
-                                      hintText: 'LOCATION',
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(width: 5),
-                                Flexible(
-                                  child: TextField(
-                                    keyboardType: TextInputType.number,
-                                    controller: contactController,
-                                    decoration: InputDecoration(
-                                      hintText: 'CONTACT',
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 100),
-                                Flexible(
-                                  child: TextField(
-                                    keyboardType: TextInputType.number,
-                                    controller: whatsappController,
-                                    decoration: InputDecoration(
-                                      hintText: 'WHATSAPP',
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        if (_imageFiles != null)
-                          Expanded(
-                            child: GridView.builder(
-                              shrinkWrap: true,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                mainAxisSpacing: 8,
-                                crossAxisSpacing: 8,
-                              ),
-                              itemCount: _imageFiles!.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Image.file(
-                                  File(_imageFiles![index].path),
-                                  fit: BoxFit.cover,
-                                );
+                            IconButton(
+                              icon: Icon(Icons.photo_album),
+                              onPressed: () {
+                                _selectImages();
+                                addImage();
                               },
                             ),
-                          ),
-                        SizedBox(height: 5),
+                            SizedBox(width: 5),
+                            Text('Add Photo'),
+                          ],
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Handle post button press
+                            final description = _controller.text;
+
+                            final images = _imageFiles;
+                            widget.onAddPost(description, images);
+                            _controller.clear();
+                            setState(() {
+                              _imageFiles = null;
+                            });
+                          },
+                          child: Text('Preview',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 68, 68, 68))),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            uploadImage();
+                            // Handle post button press
+                          },
+                          child: Text('Post',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 210, 210, 210))),
+                        ),
                       ],
                     ),
                   ),
-                ),
-                Container(
-                  color: Color.fromARGB(255, 150, 148, 148),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.photo_album),
-                            onPressed: () {
-                              _selectImages();
-                              addImage();
-                            },
-                          ),
-                          SizedBox(width: 5),
-                          Text('Add Photo'),
-                        ],
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // Handle post button press
-                          final description = _controller.text;
-
-                          final images = _imageFiles;
-                          widget.onAddPost(description, images);
-                          _controller.clear();
-                          setState(() {
-                            _imageFiles = null;
-                          });
-                        },
-                        child: Text('Preview',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 68, 68, 68))),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          uploadImage();
-                          // Handle post button press
-                        },
-                        child: Text('Post',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 210, 210, 210))),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      ]),
     );
   }
 }
